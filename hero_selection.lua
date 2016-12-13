@@ -18,7 +18,7 @@ function Think()
 		SelectHero( 6, "npc_dota_hero_earthshaker" );
 		SelectHero( 7, "npc_dota_hero_juggernaut" );
 		SelectHero( 8, "npc_dota_hero_mirana" );
-		SelectHero( 9, "npc_dota_hero_earth_spirit" );
+		SelectHero( 9, "npc_dota_hero_shadow_shaman" );
 	end
 
 end
