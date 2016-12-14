@@ -4,7 +4,7 @@ forcedHeroesByPosition = {
   {},
   {},
   {},
-  { 'npc_dota_hero_shadow_shaman' },
+  {},
   {}
 };
 
