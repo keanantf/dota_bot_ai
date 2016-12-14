@@ -20,3 +20,10 @@ TODOs
 * Determine which slots have human players, and don't pick for those slots.
 * Determine which teams any given slot belongs to - this will enable intelligent
   picking & hero compositions.
+
+USING THIS PROJECT
+------------------
+* clone this project, then copy or symlink any .lua scripts you want to use into
+  dota 2 beta\game\dota\scripts\vscripts\bots
+* If you want to revert to standard bot AI at any time, switch branches to the "empty"
+  branch, which contains no changes whatsoever. It will run vanilla AIs.
