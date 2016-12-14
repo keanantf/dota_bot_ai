@@ -1,8 +1,13 @@
-HERO SELECTION
+Dota 2 Bot AI
 ===================================================
-This is a hero selection file for Dota 2 Bot AI work.
+This is a general project for Dota 2 Bot AI work. Currently the only working
+features is an updated hero selection script.
 
 This work has its permanent home at <http://github.com/somanyrobots/dota_bot_ai>.
+
+
+HERO SELECTION
+===============
 
 Features
 ------------
