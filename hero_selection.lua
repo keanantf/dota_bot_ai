@@ -51,6 +51,10 @@ allBotHeroes = {
 
 picks = {};
 
+radiantSlots = {2,3,4,5,6};
+direSlots = {7,8,9,10,11};
+maxPlayerID = 11;
+
 -- TODO
 -- 1. determine which slots contain players - don't pick for those slots
 -- 2. determine what heroes have already been picked - don't pick those heroes - DONE
@@ -58,13 +62,8 @@ picks = {};
 -- 5. add some jitter, so the bots pick at slightly more random times
 -- 6. reimplement farm priority based system
 function Think()
-	local radiantOffset = -1;
-	local direOffset = 4;
-  local startPickTime = -45;
-  local timePerPick = 5;
-
-  local radiantSlots = {0,1,2,3,4};
-  local direSlots = {5,6,7,8,9};
+  local startPickTime = -70;
+  local timePerPick = 1;
 
   if not quickMode and (DotaTime() < startPickTime) then
     return;
@@ -83,7 +82,7 @@ function Think()
 
 	if ( GetTeam() == TEAM_RADIANT and IsTeamsTurnToPick(TEAM_RADIANT)) then
 		for i, potentialSlot in pairs(radiantSlots) do
-      print("evaluating slot ", potentialSlot);
+      -- print("evaluating slot for radiant ", potentialSlot);
 			if (IsSlotEmpty(potentialSlot)) then
 				PickHero(potentialSlot);
   			return;
@@ -91,6 +90,7 @@ function Think()
 		end
 	elseif ( GetTeam() == TEAM_DIRE and IsTeamsTurnToPick(TEAM_DIRE)) then
 		for i, potentialSlot in pairs(direSlots) do
+      -- print("evaluating slot for dire ", potentialSlot);
 			if (IsSlotEmpty(potentialSlot)) then
 				PickHero(potentialSlot);
   			return;
@@ -119,13 +119,13 @@ end
 function IsSlotEmpty(slot)
   local slotEmpty = true;
   for pickedSlot, hero in pairs(picks) do
-    print("pickedSlot is", pickedSlot);
-    print("hero is", hero);
+    -- print("pickedSlot is", pickedSlot);
+    -- print("hero is", hero);
 		if (pickedSlot == slot) then
 			slotEmpty = false;
 		end
   end
-  print("slotempty is ", slotEmpty);
+  -- print("slotempty is ", slotEmpty);
   return slotEmpty;
 end
 
@@ -139,7 +139,7 @@ end
 function GetPicks()
 	local selectedHeroes = {};
   local pickedSlots = {};
-	for i=0,9 do
+	for i=0, maxPlayerID do
 		local hName = GetSelectedHeroName(i);
 		if (hName ~= nil and hName ~= "") then
 			selectedHeroes[i] = hName;
@@ -152,12 +152,16 @@ end
 -- need to figure out an actual way to determine this, not just hardcoding it
 function slotBelongsToTeam(slot, team)
   if (team == TEAM_RADIANT) then
-    for i=0, 4 do
-      if (slot == i) then return true end;
+    for index,rSlot in pairs(radiantSlots) do
+      if (slot == rSlot) then
+        return true;
+      end;
     end
   elseif (team == TEAM_DIRE) then
-    for i=5, 9 do
-      if (slot == i) then return true end;
+    for index,dSlot in pairs(direSlots) do
+      if (slot == dSlot) then
+        return true;
+      end
     end
   end
 	return false;
