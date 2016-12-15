@@ -51,6 +51,10 @@ allBotHeroes = {
 
 picks = {};
 
+-- CHANGE THESE VALUES IF YOU'RE GETTING BUGS WITH BOTS NOT PICKING (or infinite loops)
+-- To find appropriate values, start a game, open a console, and observe which slots are
+-- being used by which players/teams. maxPlayerID shoulud just be the highest-numbered
+-- slot in use.
 radiantSlots = {2,3,4,5,6};
 direSlots = {7,8,9,10,11};
 maxPlayerID = 11;
